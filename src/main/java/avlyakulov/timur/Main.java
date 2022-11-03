@@ -1,10 +1,9 @@
 package avlyakulov.timur;
 
-import avlyakulov.timur.gameboard.GameBoard;
+import avlyakulov.timur.controller.GameBoardController;
 
 public class Main {
     public static void main(String[] args) {
-        GameBoard gameBoard = new GameBoard();
-        gameBoard.printGameBoard(gameBoard.createGameBoard());
+        new GameBoardController().run();
     }
 }
