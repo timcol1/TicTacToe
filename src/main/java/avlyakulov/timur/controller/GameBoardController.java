@@ -14,10 +14,11 @@ public class GameBoardController {
         String answerStr;
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Enter from 1-9");
+            game.printGameBoard();
             while ((answerStr = reader.readLine()) != null) {
                 int answer = Integer.parseInt(answerStr);
                 game.makeMove(answer,"player");
-                game.printGameBoard();
+                game.makeMove(,"computer");
                 System.out.println("Enter from 1-9");
             }
         }
