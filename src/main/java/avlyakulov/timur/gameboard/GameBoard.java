@@ -93,7 +93,7 @@ public class GameBoard {
                 return "Congratulations you won!";
             else if (computerPositions.containsAll(l))
                 return "Computer won this game";
-            else if (playerPositions.size() + computerPositions.size() == 5)
+            else if (playerPositions.size() + computerPositions.size() == 9)
                 return "It is draw, good luck next time";
         }
         return "";
