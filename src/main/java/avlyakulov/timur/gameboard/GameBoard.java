@@ -1,11 +1,10 @@
 package avlyakulov.timur.gameboard;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class GameBoard {
 
+    Scanner sc = new Scanner(System.in);
     private static char[][] gameBoard;
     public static ArrayList<Integer> playerPositions = new ArrayList<>();
     public static ArrayList<Integer> computerPositions = new ArrayList<>();
@@ -19,6 +18,15 @@ public class GameBoard {
         };
     }
 
+    public int checkPositions(int answer) {
+        Scanner sc = new Scanner(System.in);
+        while (playerPositions.contains(answer) || computerPositions.contains(answer)) {
+            System.out.println("These position is already taken please enter the new: ");
+            answer = sc.nextInt();
+        }
+        return answer;
+    }
+
     public void printGameBoard() {
         for (char[] chars : gameBoard) {
             for (char c : chars) {
@@ -30,9 +38,22 @@ public class GameBoard {
 
     public void makeMove(int position, String user) {
         char symbol = ' ';
-        if (user.equals("player"))
+        if (user.equals("player")) {
             symbol = 'X';
-        else symbol = 'O';
+            while (playerPositions.contains(position) || computerPositions.contains(position)) {
+                System.out.println("These position is already taken please enter the new: ");
+                position = sc.nextInt();
+            }
+            playerPositions.add(position);
+        } else {
+            position = (int) (Math.random() * 9);
+            symbol = 'O';
+            while (computerPositions.contains(position) || playerPositions.contains(position)) {
+                System.out.println("Computer try to take position which is already taken, generate new position");
+                position = (int) (Math.random() * 9);
+            }
+            computerPositions.add(position);
+        }
 
         switch (position) {
             case 1 -> gameBoard[0][0] = symbol;
@@ -45,7 +66,6 @@ public class GameBoard {
             case 8 -> gameBoard[4][2] = symbol;
             case 9 -> gameBoard[4][4] = symbol;
         }
-        printGameBoard();
     }
 
     public static String checkWinner() {
@@ -70,8 +90,8 @@ public class GameBoard {
 
         for (List l : win) {
             if (playerPositions.containsAll(l))
-                return "Congratulations you won";
-            else if (computerPositions.containsAll(l)) 
+                return "Congratulations you won!";
+            else if (computerPositions.containsAll(l))
                 return "Computer won this game";
             else if (playerPositions.size() + computerPositions.size() == 5)
                 return "It is draw, good luck next time";

@@ -18,7 +18,15 @@ public class GameBoardController {
             while ((answerStr = reader.readLine()) != null) {
                 int answer = Integer.parseInt(answerStr);
                 game.makeMove(answer,"player");
-                game.makeMove(,"computer");
+                String result = GameBoard.checkWinner();
+                if (result.length() > 0) {
+                    game.makeMove(answer,"computer");
+                    game.printGameBoard();
+                    System.out.println(result);
+                    break;
+                }
+                game.makeMove(answer,"computer");
+                game.printGameBoard();
                 System.out.println("Enter from 1-9");
             }
         }
