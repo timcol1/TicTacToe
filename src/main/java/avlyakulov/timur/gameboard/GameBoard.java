@@ -3,7 +3,6 @@ package avlyakulov.timur.gameboard;
 import java.util.*;
 
 public class GameBoard {
-
     Scanner sc = new Scanner(System.in);
     private static char[][] gameBoard;
     public static ArrayList<Integer> playerPositions = new ArrayList<>();
@@ -46,11 +45,10 @@ public class GameBoard {
             }
             playerPositions.add(position);
         } else {
-            position = (int) (Math.random() * 9);
+            position = (int) (1 + Math.random() * 9);
             symbol = 'O';
             while (computerPositions.contains(position) || playerPositions.contains(position)) {
-                System.out.println("Computer try to take position which is already taken, generate new position");
-                position = (int) (Math.random() * 9);
+                position = (int) (1 + Math.random() * 9);
             }
             computerPositions.add(position);
         }
