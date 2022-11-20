@@ -17,14 +17,6 @@ public class GameBoard {
         };
     }
 
-    public int checkPositions(int answer) {
-        Scanner sc = new Scanner(System.in);
-        while (playerPositions.contains(answer) || computerPositions.contains(answer)) {
-            System.out.println("These position is already taken please enter the new: ");
-            answer = sc.nextInt();
-        }
-        return answer;
-    }
 
     public void printGameBoard() {
         for (char[] chars : gameBoard) {
@@ -36,7 +28,7 @@ public class GameBoard {
     }
 
     public void makeMove(int position, String user) {
-        char symbol = ' ';
+        char symbol;
         if (user.equals("player")) {
             symbol = 'X';
             while (playerPositions.contains(position) || computerPositions.contains(position)) {
